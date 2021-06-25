@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block title %}Login{% endblock %}
+
+{% block content %}
+
+{% include 'flash-alerts.html' %}
+<div class="container">
+
+<form action="/login" method="POST" class="mt-3" id="login-form">
+    {{ form.hidden_tag() }} <!--add type=hidden form fields -->
+    <div class="mb-3">
+        {{form.username.label(class_="form-label")}}
+        {{form.username(class_="form-control")}}
+
+        {% for err in form.username.errors %}
+        <small class="form-text text-danger d-block">{{err}}</small>
+        {% endfor %}
+    </div>
+    <div>
+        {{form.password.label(class_="form-label")}}
+        {{form.password(class_="form-control")}}
+
+        {% for err in form.password.errors %}
+        <small class="form-text text-danger d-block">{{err}}</small>
+        {% endfor %}
+    </div>
+</form>
+
+
+<button form="login-form" class="btn btn-primary d-block my-3">Login</button>
+
+</div>
+
+{% endblock %}

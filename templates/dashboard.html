@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+
+{% block title %}Sabores De Mi Tierra{% endblock %}
+
+
+{% block content %}
+
+{% include 'flash-alerts.html' %}
+
+<div class="bg-image">
+    <div class="hero-text">
+        <div id="buffet">
+            <h3 class="my-3 w-100" style="white-space: break-spaces;">{{restaurant.today}}</h3>
+            <form action="/dashboard" method="POST" id="buffet-form">
+                {{ menu_form.hidden_tag() }} <!--add type=hidden form fields -->
+                {{ menu_form.menu(class_="buffet-textarea", rows=10) }}
+                {% for err in menu_form.menu.errors %}
+                <small class="d-block">{{ err }}</small>
+                {% endfor %}
+                <button class="btn btn-primary mt-2">Actualizar Menu</button>
+            </form>
+
+        </div>
+
+    </div>
+</div>
+
+<div class="container text-center" id="settings">
+    <h1 class="my-3">Configuraciónes</h1>
+    <div class="my-3">
+        <!-- change whatsapp number -->
+        <a href="/images" class="btn btn-primary">Imagenes</a>
+    </div>
+
+    <div class="my-3">
+        <!-- change whatsapp number -->
+        <h4>Numero de WhatsApp</h4>
+        <div>{{restaurant.whatsapp_phone}}<a href="/edit-whatsapp-number" class="btn btn-info mx-3">Editar</a></div>
+    </div>
+    <!-- crud users -->
+    {% if current_user.is_admin %}
+    <div class="my-3">
+        <!-- change whatsapp number -->
+        <a href="/users" class="btn btn-success">Gestionar Usuarios</a>
+    </div>
+    {% endif %}
+    <!-- logout -->
+    <div class="my-3">
+        <!-- change whatsapp number -->
+        <a href="/logout" class="btn btn-danger btn-large">Salir de la Cuenta</a>
+    </div>
+</div>
+
+{% endblock %}

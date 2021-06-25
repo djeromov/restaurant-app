@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block title %}Sabores De Mi Tierra{% endblock %}
+
+
+{% block content %}
+
+{% include 'flash-alerts.html' %}
+
+
+<form action="/users/create" method="POST" class="container my-3" id="create-user-form">
+    {{ form.hidden_tag() }} <!--add type=hidden form fields -->
+    {% for field in form if field.widget.input_type != 'hidden' %}
+    <div class="mb-3">
+        {{field.label(class_="form-label")}}
+        {{field(class_="form-control")}}
+
+        {% for err in field.errors %}
+        <small class="form-text text-danger d-block">{{err}}</small>
+        {% endfor %}
+
+    </div>
+    {% endfor %}
+    <button class="btn btn-primary">Crear Usuario</button>
+</form>
+
+
+
+{% endblock %}

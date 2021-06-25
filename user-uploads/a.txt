@@ -1,0 +1,1 @@
+dummy text file, so /user-uploads can be detected in version control

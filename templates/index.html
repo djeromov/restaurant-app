@@ -1,0 +1,30 @@
+    <!-- <form action="/update" method="POST">
+        <textarea name="menu-textarea-input" id="" cols="30" rows="10"></textarea>
+        <button>Update Menu</button>
+    </form> -->
+
+{% extends 'base.html' %}
+
+{% block title %}Sabores De Mi Tierra{% endblock %}
+
+{% block content %}
+
+{% include 'flash-alerts.html' %}
+
+<div class="bg-image">
+
+    <div class="hero-text">
+        <h3 class="my-3 w-100" style="white-space: break-spaces;">{{restaurant.today}}</h3>
+        <div id="buffet" style="white-space: break-spaces;">{{restaurant.menu}}</div>
+    </div>
+
+</div>
+
+{% if user_image_urls|length > 0 %}
+{% include 'carousel.html' %}
+{% endif %}
+
+<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3976.083804856676!2d-74.05202808523741!3d4.755458596546282!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e3f8599da9d7f33%3A0x66aea17ad8107e5b!2sRestaurante%20Sabores%20De%20Mi%20Tierra!5e0!3m2!1sen!2sco!4v1620845661887!5m2!1sen!2sco" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+
+
+{% endblock %}

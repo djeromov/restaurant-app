@@ -1,0 +1,6 @@
+/venv
+/__pycache__
+/user-uploads/img*
+/.vscode
+/tests/__pycache__
+key.json

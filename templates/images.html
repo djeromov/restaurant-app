@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% block title %}Sabores De Mi Tierra{% endblock %}
+
+
+{% block content %}
+
+{% include 'flash-alerts.html' %}
+
+<div class="container my-3">
+
+    <form action="/images" method="POST" enctype="multipart/form-data" id="upload-img-form">
+        {{ add_image_form.hidden_tag() }} <!--add type=hidden form fields -->
+        <div class="mb-3">
+            {{add_image_form.photo_file.label(class_="form-label")}}
+            {{add_image_form.photo_file(class_="form-control")}}
+
+            {% for err in add_image_form.photo_file.errors %}
+            <small class="form-text text-danger d-block">{{err}}</small>
+            {% endfor %}
+            <small class="form-text d-block">Suba imagenes hasta 1mb, imagenes recortados automaticamente en un cuadro</small>
+
+        </div>
+    </form>
+
+    <button class="btn btn-primary" form="upload-img-form">Subir</button>
+
+
+
+    <h4 style="text-align: center;" class="my-3">Toca un imágen para eliminárlo</h4>
+
+    <!-- one image per row on mobile, three images on desktop, two on medium -->
+    <div class="row">
+        {% for blob in blobs %}
+        <div class="col-12 col-md-4 d-flex align-items-center my-1">
+            <a href="/delete?blob-name={{blob.name}}"><img src="https://storage.googleapis.com/{{blob.bucket.name}}/{{blob.name}}" loading="lazy" width="100%"></a>
+        </div>
+        {% endfor %}
+    </div>
+
+</div>
+
+{% endblock %}

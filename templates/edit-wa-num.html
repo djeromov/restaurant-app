@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block title %}Sabores De Mi Tierra{% endblock %}
+
+
+{% block content %}
+
+{% include 'flash-alerts.html' %}
+
+
+<form action="/edit-whatsapp-number" method="POST" class="container my-3">
+    {{ form.hidden_tag() }} <!--add type=hidden form fields -->
+    {{form.whatsapp_phone.label(class_="form-label")}}
+    {{form.whatsapp_phone(class_="form-control")}}
+
+    {% for err in form.whatsapp_phone.errors %}
+    <small class="form-text text-danger d-block">{{err}}</small>
+    {% endfor %}
+
+    <small class="d-block">Solo entra numero en formato siguiente: 571112223333</small>
+    <button class="btn btn-primary my-3" type="submit">Actualizar</button>
+</form>
+
+{% endblock %}
