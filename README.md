@@ -55,15 +55,24 @@ The top right corner contains a hidden login button for administration of the re
 * For [domain mapping](https://cloud.google.com/run/docs/mapping-custom-domains) to work, a bug that I personally encountered at time of setup was having to: under cloud domains, make sure to check "Use Cloud DNS (Recommended)" for the domain; when configuring record sets in cloud dns, leave DNS Name field blank and put all 4 ip addresses in the A record set, ditto for AAAA
 
 ## Local development configuration required
-
-local development environment variables (added to bottom of .bashrc file):
+* Run these commands to create a virtual environment and install dependencies locally
+```
+python3 -m venv venv
+source venv/bin/activate
+pip3 install requirements.txt
+```
+* [local development environment variables](https://cloud.google.com/docs/authentication/getting-started#setting_the_environment_variable) (added to bottom of .bashrc file in Ubuntu):
 ```
 export FLASK_ENV=development
 export FLASK_APP=main.py
 export GOOGLE_APPLICATION_CREDENTIALS=key.json
 ```
 
-requires download of service key json file, naming it <<key.json>>, and putting into root of application (so that when developing/testing locally the services are all authenticated), DO NOT FORGET to add key.json to .gitignore 
+* download service key json file, naming it <<key.json>>, and put it into root of application (so that when developing/testing locally the services are all authenticated), key.json is part of .gitignore so make sure to name correctly or your credentials will be uploaded to github
+* run the development server and open localhost:5000
+```
+flask run
+```
 
 ## Testing
 
